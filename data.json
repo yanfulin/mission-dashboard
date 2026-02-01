@@ -6,11 +6,13 @@
   ],
   "awaitingInput": [],
   "activeProjects": [
-    {"name": "Weekly Project Reports", "description": "Automated NPI report generation", "started": "Jan 31, 2026", "status": "active", "nextMilestone": "Next run: Feb 7, 2026"},
+    {"name": "UBC1325 Weekly Reports", "description": "DOCSIS Cable Modem (MP stage, Charter/Altice)", "started": "Jan 31, 2026", "status": "active", "nextMilestone": "Next run: Feb 7, 2026"},
+    {"name": "UBC1348 Weekly Reports", "description": "DOCSIS D4.0 eMTA (DVT stage, Charter)", "started": "Feb 1, 2026", "status": "active", "nextMilestone": "Next run: Feb 7, 2026"},
     {"name": "weekly-project-report skill", "description": "Reusable skill for any project", "started": "Jan 31, 2026", "status": "complete", "nextMilestone": "—"}
   ],
   "scheduledJobs": [
-    {"job": "Weekly NPI Report (UBC1325)", "schedule": "Fridays 9:00 AM", "nextRun": "Feb 7, 2026", "description": "Generate & send report via Telegram"}
+    {"job": "UBC1325 Weekly Report", "schedule": "Fridays 9:00 AM", "nextRun": "Feb 7, 2026", "description": "DOCSIS Cable Modem - Charter/Altice"},
+    {"job": "UBC1348 Weekly Report", "schedule": "Fridays 9:00 AM", "nextRun": "Feb 7, 2026", "description": "DOCSIS D4.0 eMTA - Charter"}
   ],
   "completedTasks": [
     {"id": 1, "task": "Set up Gmail access (himalaya)", "completed": "Jan 31, 2026", "notes": "App password configured"},
@@ -23,10 +25,14 @@
     {"id": 8, "task": "Generate UBC1325 WK05 report", "completed": "Jan 31, 2026", "notes": "38 tickets, 2 P0 issues"},
     {"id": 9, "task": "Create weekly-project-report skill", "completed": "Jan 31, 2026", "notes": "Reusable for future projects"},
     {"id": 10, "task": "Save Jira token to Keychain", "completed": "Jan 31, 2026", "notes": "Secure storage"},
-    {"id": 11, "task": "Budget phone recommendation", "completed": "Jan 31, 2026", "notes": "Redmi 13C 5G recommended"}
+    {"id": 11, "task": "Budget phone recommendation", "completed": "Jan 31, 2026", "notes": "Redmi 13C 5G recommended"},
+    {"id": 12, "task": "Set up UBC1348 project config", "completed": "Feb 1, 2026", "notes": "DOCSIS D4.0 eMTA, DVT, Foxconn, Charter"},
+    {"id": 13, "task": "Generate UBC1348 WK05 report", "completed": "Feb 1, 2026", "notes": "2 Jira projects configured"},
+    {"id": 14, "task": "Deploy Mission Dashboard to Zeabur", "completed": "Feb 1, 2026", "notes": "Live at smartdog-dashboard.zeabur.app"}
   ],
   "notes": [
-    {"date": "Jan 31, 2026", "content": "Weekly report system established for UBC1325. 5 data sources configured: Gmail, Jira, ETAS acceptance, ETAS revenue, AE update. Created reusable weekly-project-report skill. First report generated: 38 active tickets, 2 P0 issues identified."}
+    {"date": "Jan 31, 2026", "content": "Weekly report system established for UBC1325. 5 data sources configured: Gmail, Jira, ETAS acceptance, ETAS revenue, AE update. Created reusable weekly-project-report skill. First report generated: 38 active tickets, 2 P0 issues identified."},
+    {"date": "Feb 1, 2026", "content": "UBC1348 weekly reports configured. DOCSIS D4.0 eMTA project (DVT stage, Charter). 2 Jira projects (C1348AA00, C1348BA00). Mission Dashboard deployed to Zeabur with live updates."}
   ],
-  "lastUpdated": "2026-01-31T21:15:00+08:00"
+  "lastUpdated": "2026-02-01T11:04:00+08:00"
 }
