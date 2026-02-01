@@ -76,10 +76,22 @@ const server = http.createServer((req, res) => {
 
 // Update markdown dashboard when web dashboard changes
 function updateMarkdownDashboard(data) {
-  const md = `# 🐕 Mission Dashboard
+  try {
+    // Add default values to prevent crashes
+    const safeData = {
+      lastUpdated: data.lastUpdated || new Date().toISOString(),
+      pendingTasks: data.pendingTasks || [],
+      awaitingInput: data.awaitingInput || [],
+      activeProjects: data.activeProjects || [],
+      scheduledJobs: data.scheduledJobs || [],
+      completedTasks: data.completedTasks || [],
+      notes: data.notes || []
+    };
+
+    const md = `# 🐕 Mission Dashboard
 **Smart Dog Bot × Rick Lin**
 
-*Last updated: ${new Date(data.lastUpdated).toLocaleString()}*
+*Last updated: ${new Date(safeData.lastUpdated).toLocaleString()}*
 
 ---
 
@@ -87,8 +99,8 @@ function updateMarkdownDashboard(data) {
 
 | # | Task | Priority | Created | Status | Notes |
 |---|------|----------|---------|--------|-------|
-${data.pendingTasks.length === 0 ? '| — | *No pending tasks* | — | — | — | — |' : 
-  data.pendingTasks.map((t, i) => `| ${i+1} | ${t.task} | ${t.priority} | ${t.created} | ${t.status} | ${t.notes || '—'} |`).join('\n')}
+${safeData.pendingTasks.length === 0 ? '| — | *No pending tasks* | — | — | — | — |' : 
+  safeData.pendingTasks.map((t, i) => `| ${i+1} | ${t.task} | ${t.priority} | ${t.created} | ${t.status} | ${t.notes || '—'} |`).join('\n')}
 
 ---
 
@@ -96,8 +108,8 @@ ${data.pendingTasks.length === 0 ? '| — | *No pending tasks* | — | — | —
 
 | # | Question | Context | Asked | Status |
 |---|----------|---------|-------|--------|
-${data.awaitingInput.length === 0 ? '| — | *No pending questions* | — | — | — |' :
-  data.awaitingInput.map((q, i) => `| ${i+1} | ${q.question} | ${q.context || '—'} | ${q.asked} | ${q.status} |`).join('\n')}
+${safeData.awaitingInput.length === 0 ? '| — | *No pending questions* | — | — | — |' :
+  safeData.awaitingInput.map((q, i) => `| ${i+1} | ${q.question} | ${q.context || '—'} | ${q.asked} | ${q.status} |`).join('\n')}
 
 ---
 
@@ -105,7 +117,7 @@ ${data.awaitingInput.length === 0 ? '| — | *No pending questions* | — | — 
 
 | Project | Description | Started | Status | Next Milestone |
 |---------|-------------|---------|--------|----------------|
-${data.activeProjects.map(p => `| ${p.name} | ${p.description} | ${p.started} | ${p.status} | ${p.nextMilestone} |`).join('\n')}
+${safeData.activeProjects.map(p => `| ${p.name} | ${p.description} | ${p.started} | ${p.status} | ${p.nextMilestone} |`).join('\n')}
 
 ---
 
@@ -113,7 +125,7 @@ ${data.activeProjects.map(p => `| ${p.name} | ${p.description} | ${p.started} | 
 
 | Job | Schedule | Next Run | Description |
 |-----|----------|----------|-------------|
-${data.scheduledJobs.map(j => `| ${j.job} | ${j.schedule} | ${j.nextRun} | ${j.description} |`).join('\n')}
+${safeData.scheduledJobs.map(j => `| ${j.job} | ${j.schedule} | ${j.nextRun} | ${j.description} |`).join('\n')}
 
 ---
 
@@ -121,7 +133,7 @@ ${data.scheduledJobs.map(j => `| ${j.job} | ${j.schedule} | ${j.nextRun} | ${j.d
 
 | # | Task | Completed | Notes |
 |---|------|-----------|-------|
-${data.completedTasks.slice(0, 20).map((t, i) => `| ${i+1} | ${t.task} | ${t.completed} | ${t.notes || '—'} |`).join('\n')}
+${safeData.completedTasks.slice(0, 20).map((t, i) => `| ${i+1} | ${t.task} | ${t.completed} | ${t.notes || '—'} |`).join('\n')}
 
 ---
 
@@ -129,25 +141,29 @@ ${data.completedTasks.slice(0, 20).map((t, i) => `| ${i+1} | ${t.task} | ${t.com
 
 | Metric | Count |
 |--------|-------|
-| Tasks Completed | ${data.completedTasks.length} |
-| Tasks Pending | ${data.pendingTasks.length} |
-| Questions Awaiting Input | ${data.awaitingInput.length} |
-| Active Projects | ${data.activeProjects.filter(p => p.status === 'active').length} |
-| Scheduled Jobs | ${data.scheduledJobs.length} |
+| Tasks Completed | ${safeData.completedTasks.length} |
+| Tasks Pending | ${safeData.pendingTasks.length} |
+| Questions Awaiting Input | ${safeData.awaitingInput.length} |
+| Active Projects | ${safeData.activeProjects.filter(p => p.status === 'active').length} |
+| Scheduled Jobs | ${safeData.scheduledJobs.length} |
 
 ---
 
 ## 📝 Notes & Decisions
 
-${data.notes.map(n => `### ${n.date}\n${n.content}\n`).join('\n')}
+${safeData.notes.map(n => `### ${n.date}\n${n.content}\n`).join('\n')}
 
 ---
 
 *This dashboard is maintained by Smart Dog Bot 🐕*
 *Location: \`/Users/yenfulin/.openclaw/workspace/DASHBOARD.md\`*
 `;
-  
-  fs.writeFileSync('/Users/yenfulin/.openclaw/workspace/DASHBOARD.md', md);
+
+    fs.writeFileSync(path.join(WEB_DIR, 'DASHBOARD.md'), md);
+  } catch (error) {
+    console.error('Error updating markdown dashboard:', error);
+    // Don't crash the server, just log the error
+  }
 }
 
 server.listen(PORT, '0.0.0.0', () => {
