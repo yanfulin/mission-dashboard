@@ -1,0 +1,12 @@
+{
+  "name": "mission-dashboard",
+  "version": "1.0.0",
+  "description": "Smart Dog Bot Mission Dashboard",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

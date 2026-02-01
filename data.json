@@ -1,0 +1,32 @@
+{
+  "pendingTasks": [
+    {"id": 1, "task": "Weekly report: Add ETAS acceptance data", "priority": "Medium", "created": "Jan 31, 2026", "status": "waiting", "notes": "Waiting for Ruby Yang's email"},
+    {"id": 2, "task": "Weekly report: Add ETAS revenue data", "priority": "Medium", "created": "Jan 31, 2026", "status": "waiting", "notes": "Waiting for Josephine Chen's email"},
+    {"id": 3, "task": "Weekly report: Add AE update", "priority": "Medium", "created": "Jan 31, 2026", "status": "waiting", "notes": "Waiting for Cynthia Hsu's email"}
+  ],
+  "awaitingInput": [],
+  "activeProjects": [
+    {"name": "Weekly Project Reports", "description": "Automated NPI report generation", "started": "Jan 31, 2026", "status": "active", "nextMilestone": "Next run: Feb 7, 2026"},
+    {"name": "weekly-project-report skill", "description": "Reusable skill for any project", "started": "Jan 31, 2026", "status": "complete", "nextMilestone": "—"}
+  ],
+  "scheduledJobs": [
+    {"job": "Weekly NPI Report (UBC1325)", "schedule": "Fridays 9:00 AM", "nextRun": "Feb 7, 2026", "description": "Generate & send report via Telegram"}
+  ],
+  "completedTasks": [
+    {"id": 1, "task": "Set up Gmail access (himalaya)", "completed": "Jan 31, 2026", "notes": "App password configured"},
+    {"id": 2, "task": "Set up Jira API access", "completed": "Jan 31, 2026", "notes": "Token saved in macOS Keychain"},
+    {"id": 3, "task": "Create weekly report template", "completed": "Jan 31, 2026", "notes": "Based on sample PDF"},
+    {"id": 4, "task": "Configure 5 Jira projects for UBC1325", "completed": "Jan 31, 2026", "notes": "EA00, AA00, BA00, CA00, DA00"},
+    {"id": 5, "task": "Add ETAS acceptance source (Ruby Yang)", "completed": "Jan 31, 2026", "notes": "Email search configured"},
+    {"id": 6, "task": "Add ETAS revenue source (Josephine Chen)", "completed": "Jan 31, 2026", "notes": "Email search configured"},
+    {"id": 7, "task": "Add AE update source (Cynthia Hsu)", "completed": "Jan 31, 2026", "notes": "Email search configured"},
+    {"id": 8, "task": "Generate UBC1325 WK05 report", "completed": "Jan 31, 2026", "notes": "38 tickets, 2 P0 issues"},
+    {"id": 9, "task": "Create weekly-project-report skill", "completed": "Jan 31, 2026", "notes": "Reusable for future projects"},
+    {"id": 10, "task": "Save Jira token to Keychain", "completed": "Jan 31, 2026", "notes": "Secure storage"},
+    {"id": 11, "task": "Budget phone recommendation", "completed": "Jan 31, 2026", "notes": "Redmi 13C 5G recommended"}
+  ],
+  "notes": [
+    {"date": "Jan 31, 2026", "content": "Weekly report system established for UBC1325. 5 data sources configured: Gmail, Jira, ETAS acceptance, ETAS revenue, AE update. Created reusable weekly-project-report skill. First report generated: 38 active tickets, 2 P0 issues identified."}
+  ],
+  "lastUpdated": "2026-01-31T21:15:00+08:00"
+}

@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🐕 Mission Dashboard | Smart Dog Bot × Rick Lin</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container">
+    <!-- Header -->
+    <header class="header">
+      <div class="header-left">
+        <span class="logo">🐕</span>
+        <div>
+          <h1>Mission Dashboard</h1>
+          <p class="subtitle">Smart Dog Bot × Rick Lin</p>
+        </div>
+      </div>
+      <div class="header-right">
+        <span class="last-updated" id="lastUpdated">Loading...</span>
+        <button class="btn btn-primary" onclick="refreshData()">↻ Refresh</button>
+      </div>
+    </header>
+
+    <!-- Stats Bar -->
+    <div class="stats-bar">
+      <div class="stat-card">
+        <div class="stat-number" id="statPending">0</div>
+        <div class="stat-label">Pending</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number" id="statQuestions">0</div>
+        <div class="stat-label">Questions</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number" id="statProjects">0</div>
+        <div class="stat-label">Projects</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number" id="statCompleted">0</div>
+        <div class="stat-label">Completed</div>
+      </div>
+    </div>
+
+    <!-- Main Grid -->
+    <div class="main-grid">
+      <!-- Pending Tasks -->
+      <section class="card">
+        <div class="card-header">
+          <h2>📋 Pending Tasks</h2>
+          <button class="btn btn-small" onclick="showAddTask()">+ Add</button>
+        </div>
+        <div class="card-content" id="pendingTasks">
+          <p class="empty-state">No pending tasks</p>
+        </div>
+      </section>
+
+      <!-- Awaiting Input -->
+      <section class="card">
+        <div class="card-header">
+          <h2>❓ Awaiting Rick's Input</h2>
+          <button class="btn btn-small" onclick="showAddQuestion()">+ Add</button>
+        </div>
+        <div class="card-content" id="awaitingInput">
+          <p class="empty-state">No pending questions</p>
+        </div>
+      </section>
+
+      <!-- Active Projects -->
+      <section class="card">
+        <div class="card-header">
+          <h2>🔄 Active Projects</h2>
+        </div>
+        <div class="card-content" id="activeProjects">
+          <p class="empty-state">No active projects</p>
+        </div>
+      </section>
+
+      <!-- Scheduled Jobs -->
+      <section class="card">
+        <div class="card-header">
+          <h2>⏰ Scheduled Jobs</h2>
+        </div>
+        <div class="card-content" id="scheduledJobs">
+          <p class="empty-state">No scheduled jobs</p>
+        </div>
+      </section>
+    </div>
+
+    <!-- Completed Tasks (Collapsible) -->
+    <section class="card full-width">
+      <div class="card-header clickable" onclick="toggleCompleted()">
+        <h2>✅ Completed Tasks</h2>
+        <span class="toggle-icon" id="completedToggle">▼</span>
+      </div>
+      <div class="card-content collapsed" id="completedTasks">
+        <p class="empty-state">No completed tasks</p>
+      </div>
+    </section>
+
+    <!-- Notes -->
+    <section class="card full-width">
+      <div class="card-header">
+        <h2>📝 Notes & Decisions</h2>
+      </div>
+      <div class="card-content" id="notes">
+        <p class="empty-state">No notes</p>
+      </div>
+    </section>
+  </div>
+
+  <!-- Add Task Modal -->
+  <div class="modal" id="addTaskModal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3>Add New Task</h3>
+        <button class="btn-close" onclick="closeModal('addTaskModal')">×</button>
+      </div>
+      <form id="addTaskForm" onsubmit="addTask(event)">
+        <div class="form-group">
+          <label>Task Description</label>
+          <input type="text" id="taskDescription" required placeholder="What needs to be done?">
+        </div>
+        <div class="form-group">
+          <label>Priority</label>
+          <select id="taskPriority">
+            <option value="High">High</option>
+            <option value="Medium" selected>Medium</option>
+            <option value="Low">Low</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Notes</label>
+          <input type="text" id="taskNotes" placeholder="Optional notes">
+        </div>
+        <div class="form-actions">
+          <button type="button" class="btn" onclick="closeModal('addTaskModal')">Cancel</button>
+          <button type="submit" class="btn btn-primary">Add Task</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Add Question Modal -->
+  <div class="modal" id="addQuestionModal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3>Add Question for Rick</h3>
+        <button class="btn-close" onclick="closeModal('addQuestionModal')">×</button>
+      </div>
+      <form id="addQuestionForm" onsubmit="addQuestion(event)">
+        <div class="form-group">
+          <label>Question</label>
+          <input type="text" id="questionText" required placeholder="What do you need to ask?">
+        </div>
+        <div class="form-group">
+          <label>Context</label>
+          <input type="text" id="questionContext" placeholder="Provide context">
+        </div>
+        <div class="form-actions">
+          <button type="button" class="btn" onclick="closeModal('addQuestionModal')">Cancel</button>
+          <button type="submit" class="btn btn-primary">Add Question</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
